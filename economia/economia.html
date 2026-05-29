@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tres Valles - ALMA DE AZÚCAR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            color: #059669;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #374151;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #059669;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: zoomIn 1.2s ease-out;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #059669;
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            animation: fadeInUp 0.8s ease-out 0.7s both;
+        }
+
+        .hero-btn:hover {
+            background: #047857;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: fadeIn 0.8s ease-out 1.2s both;
+        }
+
+        .scroll-indicator-box {
+            width: 24px;
+            height: 40px;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            padding-top: 8px;
+            animation: bounce 1.5s infinite;
+        }
+
+        .scroll-indicator-dot {
+            width: 4px;
+            height: 12px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 2px;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .section-header.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-divider {
+            width: 6rem;
+            height: 4px;
+            background: #059669;
+            margin: 0 auto 2rem;
+        }
+
+        .section-header p {
+            font-size: 1.25rem;
+            color: #6B7280;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .intro {
+            background: white;
+        }
+
+        .intro-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .intro-text {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out 0.2s;
+        }
+
+        .intro-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .intro-text p {
+            font-size: 1.125rem;
+            color: #374151;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .intro-image {
+            height: 400px;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s ease-out 0.4s;
+        }
+
+        .intro-image.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+       
+        .agriculture {
+            background: #ECFDF5;
+        }
+
+        .agriculture-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .agriculture-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .agriculture-card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .agriculture-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .agriculture-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
+        }
+
+        .agriculture-icon {
+            width: 64px;
+            height: 64px;
+            background: #D1FAE5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: transform 0.6s;
+        }
+
+        .agriculture-card:hover .agriculture-icon {
+            transform: rotate(360deg);
+        }
+
+        .agriculture-icon svg {
+            width: 32px;
+            height: 32px;
+            color: #059669;
+        }
+
+        .agriculture-card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+
+        .agriculture-card p {
+            color: #6B7280;
+            line-height: 1.6;
+        }
+
+    
+        .industry {
+            background: #111827;
+            color: white;
+        }
+
+        .industry-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .industry .section-header h2 {
+            color: white;
+        }
+
+        .industry .section-divider {
+            background: #10B981;
+        }
+
+        .industry .section-header p {
+            color: #D1D5DB;
+        }
+
+        .industry-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .industry-item {
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.6s ease-out;
+        }
+
+        .industry-item.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .industry-item:hover {
+            transform: scale(1.05);
+        }
+
+        .industry-icon {
+            width: 80px;
+            height: 80px;
+            background: #059669;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .industry-item:hover .industry-icon {
+            transform: translateY(-10px);
+        }
+
+        .industry-icon svg {
+            width: 40px;
+            height: 40px;
+            color: white;
+        }
+
+        .industry-stat {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #10B981;
+            margin-bottom: 0.5rem;
+        }
+
+        .industry-label {
+            font-size: 0.875rem;
+            color: #9CA3AF;
+            margin-bottom: 0.5rem;
+        }
+
+        .industry-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+        .gallery {
+            background: white;
+        }
+
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            cursor: pointer;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.5s ease-out;
+        }
+
+        .gallery-item.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay p {
+            color: white;
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+
+   .video{
+    text-align:center;
+    padding:40px;
+}
+
+.video h2{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:35px;
+    color:#6b3e2e;
+}
+
+.video video{
+    width:80%;
+    border-radius:15px;
+    margin-top:20px;
+}
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+        }
+
+        .play-button svg {
+            width: 40px;
+            height: 40px;
+            color: #059669;
+            margin-left: 4px;
+        }
+
+        .data-table {
+            background: #F9FAFB;
+        }
+
+        .data-table-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .table-wrapper {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out 0.2s;
+        }
+
+        .table-wrapper.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #059669;
+            color: white;
+        }
+
+        th {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #E5E7EB;
+            transition: background 0.3s;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        tbody tr.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        tbody tr:hover {
+            background: #ECFDF5;
+        }
+
+        td {
+            padding: 1rem 1.5rem;
+        }
+
+        .category {
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .value {
+            color: #374151;
+        }
+
+        .growth {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #D1FAE5;
+            color: #065F46;
+            border-radius: 9999px;
+            font-weight: 600;
+        }
+
+        footer {
+            background: #065F46;
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-content {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .footer-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer h3 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            color: #A7F3D0;
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: white;
+            color: #065F46;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+        }
+
+        .footer-btn:hover {
+            transform: scale(1.05);
+            background: #ECFDF5;
+        }
+
+        .footer-divider {
+            margin: 2rem 0;
+            border-top: 1px solid #047857;
+        }
+
+        .footer-copyright {
+            color: #A7F3D0;
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.25rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .intro-grid,
+            .agriculture-grid,
+            .industry-grid,
+            .gallery-grid 
+			.video-grid{
+                grid-template-columns: 1fr;
+            }
+        }
+.regresar{
+    text-align:center;
+    margin-top:20px;
+}
+
+.regresar a{
+    text-decoration:none;
+    color:white;
+    background:#388e3c;
+    padding:12px 25px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.regresar a:hover{
+    transform:scale(1.1);
+}
+
+footer{
+    height:40px;
+		}       
+		.sources {
+    background: linear-gradient(135deg, #F0FDF4, #FFFFFF);
+    padding: 6rem 2rem;
+}
+
+.sources-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.sources-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.source-item {
+    background: #f3f4f6;
+    border-left: 6px solid #059669;
+    padding: 1.2rem 1.5rem;
+    border-radius: 12px;
+    color: #374151;
+    line-height: 1.6;
+    
+    
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+
+.source-item:hover {
+    transform: translateX(10px) scale(1.02);
+    background: #ffffff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+
+
+.source-item a {
+    color: #059669;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.source-item a:hover {
+    text-decoration: underline;
+}
+		
+        .sources-note {
+            margin-top: 2rem;
+            background: #065F46;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.12);
+        }
+
+        .background-audio {
+            display: none;
+        }
+	
+		
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <h1>Tres Valles</h1>
+            <ul class="nav-links">
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#intro">Introducción</a></li>
+                <li><a href="#agricultura">Agricultura</a></li>
+                <li><a href="#industria">Industria</a></li>
+                <li><a href="#galeria">Galería</a></li>
+				<li><a href="ECONOMIA TRES VALLES.mp4">Video</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="hero" class="hero">
+      <img src="cañitas.jpg" alt="Paisaje de Tres Valles" class="hero-bg">
+        <div class="hero-overlay"></div>
+      <div class="hero-content">
+            <h1>Tres Valles</h1>
+            <p>ALMA DE AZÚCAR&nbsp;&nbsp;</p>
+            <a href="#intro" class="hero-btn">Descubrir más</a>
+	  </div>
+    </section>
+
+    <section id="intro" class="intro">
+        <div class="intro-container">
+            <div class="section-header">
+                <h2>Bienvenidos a Tres Valles</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <p>
+                        Tres Valles es una región privilegiada que combina la riqueza de sus tierras
+                        agrícolas con el dinamismo de su sector industrial. Nuestra comunidad ha
+                        crecido manteniendo un equilibrio perfecto entre tradición y modernidad.
+                    </p>
+                    <p>
+                        Con un clima favorable y suelos fértiles, hemos desarrollado una agricultura
+                        sostenible que alimenta tanto a nuestra población local como a los mercados
+                        regionales. Paralelamente, nuestra industria ha evolucionado para ofrecer
+                        empleos de calidad y contribuir al desarrollo económico de la región.
+                    </p>
+					<p>En esta página exploraremos la gran actividad económica del día a día de Tres Valles, destacando cómo sus habitantes impulsan el desarrollo a través del trabajo, la innovación y el aprovechamiento de sus recursos naturales.
+					</p>
+                </div>
+                <div class="intro-image">
+                    <img src="papel.png" alt="Vista de Tres Valles">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="agricultura" class="agriculture">
+        <div class="agriculture-container">
+            <div class="section-header">
+                <h2>Nuestra Agricultura</h2>
+                <div class="section-divider"></div>
+                <p>La tierra fértil de Tres Valles produce alimentos de la más alta calidad</p>
+            </div>
+            <div class="agriculture-grid">
+                <div class="agriculture-card">
+                    <div class="agriculture-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                        </svg>
+                    </div>
+                    <h3>Caña de azúcar&nbsp; &nbsp;</h3>
+                    <p>Durante cada zafra, Tres Valles produce aproximadamente entre 1.2 y 1.8 millones de toneladas de caña de azúcar, las cuales son transportadas a el ingenio tres valles para su procesamiento, siendo esta actividad el principal motor económico local.</p>
+                </div>
+                <div class="agriculture-card">
+                    <div class="agriculture-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                        </svg>
+                    </div>
+                    <h3>Maíz</h3>
+                    <p>El cultivo de maíz representa una actividad fundamental para el consumo local, con una producción anual estimada entre 20,000 y 40,000 toneladas, fortaleciendo la seguridad alimentaria de la región.</p>
+                </div>
+                <div class="agriculture-card">
+                    <div class="agriculture-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                        </svg>
+                    </div>
+                    <h3>Piña</h3>
+                  <p>La producción de piña&nbsp; ha crecido en los últimos años, alcanzando entre 10,000 y 25,000 toneladas anuales, destacando por su calidad y sabor en mercados regionales.</p>
+                    <p>El tipo de piña es el&nbsp; MD2 (piña dulce) &nbsp;</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="industria" class="industry">
+        <div class="industry-container">
+            <div class="section-header">
+                <h2>Sector Económico&nbsp;</h2>
+                <div class="section-divider"></div>
+                <p>Agroindustria y sostenibilidad impulsando la economía de la Cuenca del Papaloapan</p>
+            </div>
+            <div class="industry-grid">
+                <div class="industry-item">
+                    <div class="industry-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <div class="industry-stat">3+</div>
+                    <div class="industry-label">Plantas industriales</div>
+                    <div class="industry-title">Manufactura</div>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="industry-stat">3,000+</div>
+                    <div class="industry-label">Trabajadores</div>
+                    <div class="industry-title">Empleo</div>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <div class="industry-stat">85%</div>
+                    <div class="industry-label">Automatización</div>
+                    <div class="industry-title">Tecnología</div>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                        </svg>
+                    </div>
+                    <div class="industry-stat">100%</div>
+                    <div class="industry-label">Reciclaje</div>
+                    <div class="industry-title">Sostenibilidad</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ 
+    <section id="galeria" class="gallery">
+        <div class="gallery-container">
+            <div class="section-header">
+                <h2>Galería</h2>
+                <div class="section-divider"></div>
+                <p>Respresentación gráfica de la económia de Tres Valles&nbsp; &nbsp;</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                  <img src="piasa.jpeg" alt="IGENIO">
+                    <div class="gallery-overlay">
+                        <p>Ingenio Azucarero</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="negocio.jpg" alt="negocio">
+                    <div class="gallery-overlay">
+                        <p>Pollos Guerrero</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                  <img src="scribe.jpg" alt="scribe">
+                    <div class="gallery-overlay">
+                        <p>MEXPAPE</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                  <img src="loresi.jpg" alt="loresi">
+                    <div class="gallery-overlay">
+                        <p>Tiendas Lores</p>
+                    </div>
+                </div>
+				
+                <div class="gallery-item">
+                    <img src="la pemex.jpg" alt="la pemex">
+                    <div class="gallery-overlay">
+                        <p>Gasolineras PEMEX</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="tres b.jpg" alt="tres b">
+                    <div class="gallery-overlay">
+                        <p>Tiendas comerciales&nbsp;</p>
+                    </div>
+					
+					
+                </div>
+            </div>
+        </div>
+    </section>
+	
+            <div class="section-header">
+                <h2>Descubre Tres Valles</h2>
+                <div class="section-divider"></div>
+                <p>Un recorrido visual por nuestra región</p>
+            </div>
+            <div class="video">
+
+    <video controls>
+      <source src="economia de t.mp4" type="video/mp4">
+    </video>
+</div>
+	
+<section id="fuentes" class="sources">
+        <div class="sources-container">
+            <div class="section-header">
+                <h2>Fuentes de consulta</h2>
+                <div class="section-divider"></div>
+                <p>Referencias utilizadas para complementar la información agrícola, económica, visual y audiovisual del proyecto.</p>
+            </div>
+
+            <div class="sources-list">
+                <div class="source-item">
+                    Información general sobre agricultura, economía local y contexto regional de Tres Valles, Veracruz, obtenida de conocimientos educativos y fuentes de consulta pública.
+                </div>
+                <div class="source-item">
+                    Información sobre el municipio de Tres Valles: <a href="https://es.wikipedia.org/wiki/Tres_Valles" target="_blank" rel="noopener noreferrer">https://es.wikipedia.org/wiki/Tres_Valles</a>
+                </div>
+                <div class="source-item">
+                    Datos aproximados de producción agrícola basados en estimaciones regionales de la Cuenca del Papaloapan y datos agrícolas en Veracruz: <a href="https://www.gob.mx/siap" target="_blank" rel="noopener noreferrer">https://www.gob.mx/siap</a>
+                </div>
+                <div class="source-item">
+                    Información sobre producción de caña de azúcar y agricultura en México: <a href="https://grupopiasa.com/newsite/inicio/" target="_blank" rel="noopener noreferrer">https://grupopiasa.com</a>
+                </div>
+				 <div class="source-item">
+                    Fotografia del ingenio azucarero: <a href="https://www.gob.mx/stps/galerias/recorrido-por-el-ingenio-azucarero-tres-valles-en-veracruz" target="_blank" rel="noopener noreferrer">https://www.gob.mx</a>
+                </div>
+               
+                <div class="source-item">
+                    Fotografia del MEXPAPE: <a href="https://x.com/BioPappel/status/1141344887096446977" target="_blank" rel="noopener noreferrer">https://x.com/BioPappel</a>
+                </div> 
+            </div>
+				<div class="source-item">
+                    Fotografia complementaria: <a href="https://www.bing.com/images/search?view=detailV2&ccid=4voRiuf0&id=3E724930C57D803153C2799DD71FBEFA8DE91055&thid=OIP.4voRiuf0ITI_j2Z5uWPuZAHaGu&mediaurl=https%3a%2f%2fwww.suenaacampo.com%2fprueba1%2fwp-content%2fuploads%2f2021%2f02%2fImagen-2-1.png&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.e2fa118ae7f421323f8f6679b963ee64%3frik%3dVRDpjfq%252bH9edeQ%26pid%3dImgRaw%26r%3d0&exph=528&expw=581&q=How+To+Create+A+Plant+Journal&mode=overlay&FORM=VSMAGC&ck=95C86BD819D103A3F12760A0CD683596&idpp=serp" target="_blank" rel="noopener noreferrer">https://www.bing.com</a>
+                </div> 
+            <div class="sources-note">
+                *Este proyecto es de carácter educativo y sin fines de lucro. Las imágenes y videos utilizados son de referencia. En caso de requerir la eliminación de algún contenido, se atenderá la solicitud para su pronta corrección.
+            </div>
+        </div>
+    </section>
+
+    <audio class="background-audio" autoplay loop preload="auto" playsinline>
+        <source src="solarflex-calm-soft-515498.mp3" type="audio/mpeg">
+    </audio>
+	
+	
+<script>
+      
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '-50px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+       
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll(
+                '.section-header, .intro-text, .intro-image, .agriculture-card, ' +
+                '.industry-item, .gallery-item, .video-wrapper, .table-wrapper, ' +
+                '.footer-content'
+            );
+
+            animatedElements.forEach(el => observer.observe(el));
+
+        
+            const tableRows = document.querySelectorAll('tbody tr');
+            const tableObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        tableRows.forEach((row, index) => {
+                            setTimeout(() => {
+                                row.classList.add('visible');
+                            }, index * 100);
+                        });
+                        tableObserver.disconnect();
+                    }
+                });
+            }, observerOptions);
+
+            if (tableRows.length > 0) {
+                tableObserver.observe(tableRows[0]);
+            }
+
+            const agricultureCards = document.querySelectorAll('.agriculture-card');
+            agricultureCards.forEach((card, index) => {
+                card.style.transitionDelay = `${0.2 + index * 0.1}s`;
+            });
+
+           
+            const industryItems = document.querySelectorAll('.industry-item');
+            industryItems.forEach((item, index) => {
+                item.style.transitionDelay = `${0.2 + index * 0.1}s`;
+            });
+
+         
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach((item, index) => {
+                item.style.transitionDelay = `${0.1 + index * 0.05}s`;
+            });
+
+            const backgroundAudio = document.querySelector('.background-audio');
+            if (backgroundAudio) {
+                backgroundAudio.muted = false;
+                backgroundAudio.volume = 0.18;
+                const playAudio = () => {
+                    backgroundAudio.play().catch(() => {});
+                };
+                playAudio();
+                document.addEventListener('click', playAudio, { once: true });
+                document.addEventListener('touchstart', playAudio, { once: true });
+            }
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const offsetTop = target.offsetTop - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+<footer>
+	
+  <div class="regresar"> <a href="../index.html">← Volver a inicio</a> </div>
+	
+</footer>
+</body>
+</html>

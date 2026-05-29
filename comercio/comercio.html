@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RESTAURANTE LA TERRAZA</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Bungee+Spice&family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+	<style>
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --primary:#d84315;
+    --secondary:#ff7043;
+    --accent:#ffd54f;
+    --bg:#fffaf3;
+}
+
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:var(--bg);
+    color:#333;
+}
+
+
+.hero{
+    height:65vh;
+    background:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
+    url("fachada.jpg") center/cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+}
+
+.hero h1{
+    font-family:'Pacifico',cursive;
+    font-size:60px;
+    color:var(--accent);
+    text-shadow:0 5px 20px rgba(0,0,0,0.5);
+}
+
+.hero p{
+    font-size:22px;
+    opacity:0.9;
+}
+
+
+.contenedor{
+    max-width:1100px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+
+.tarjeta{
+    background:white;
+    padding:35px;
+    border-radius:25px;
+    margin-bottom:35px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.tarjeta:hover{
+    transform:translateY(-5px);
+}
+
+
+.titulo{
+    font-family:'Playfair Display',serif;
+    font-size:32px;
+    margin-bottom:15px;
+    color:var(--primary);
+    position:relative;
+}
+
+.titulo::after{
+    content:"";
+    width:60px;
+    height:4px;
+    background:var(--secondary);
+    position:absolute;
+    left:0;
+    bottom:-8px;
+    border-radius:5px;
+}
+
+
+.texto{
+    line-height:1.8;
+    font-size:17px;
+}
+
+
+.galeria{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.galeria div{
+    width:250px;
+    text-align:center;
+}
+
+.galeria img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    border-radius:15px;
+    transition:.4s;
+}
+
+.galeria img:hover{
+    transform:scale(1.08);
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+
+.valores{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+}
+
+.valor{
+    background:linear-gradient(135deg,#e8f5e9,#c8e6c9);
+    padding:18px;
+    border-radius:12px;
+    text-align:center;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.valor:hover{
+    transform:scale(1.05);
+}
+
+
+.tabla-horarios{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.tabla-horarios th{
+    background:var(--primary);
+    color:white;
+    padding:12px;
+}
+
+.tabla-horarios td{
+    padding:12px;
+    text-align:center;
+}
+
+.tabla-horarios tr:nth-child(even){
+    background:#fff3e0;
+}
+
+.tabla-horarios tr:hover{
+    background:#ffe0b2;
+}
+
+.nota{
+    background:#fff8e1;
+    text-align:left;
+    font-size:14px;
+}
+
+.menu-digital{
+    text-align:center;
+    background:linear-gradient(135deg,var(--secondary),var(--primary));
+    color:white;
+}
+
+.boton{
+    margin-top:15px;
+    display:inline-block;
+    padding:14px 28px;
+    background:var(--accent);
+    color:black;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.boton:hover{
+    transform:scale(1.1);
+}
+
+
+#contacto{
+    background:linear-gradient(135deg,#fff3e0,#ffe0b2);
+    border-radius:25px;
+    padding:40px 20px;
+}
+
+.section-title{
+    text-align:center;
+    font-family:'Playfair Display';
+    font-size:34px;
+    color:var(--primary);
+}
+
+.section-line{
+    width:80px;
+    height:4px;
+    background:var(--secondary);
+    margin:10px auto 30px;
+    border-radius:5px;
+}
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:2fr 3fr;
+    gap:2.5rem;
+    max-width:900px;
+    margin:0 auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+.contact-info{
+    background:#fff3e0;
+    padding:20px;
+    border-radius:15px;
+}
+
+.form-control{
+    width:100%;
+    padding:10px;
+    border-radius:10px;
+    border:1px solid #ddd;
+}
+
+.form-control:focus{
+    border-color:var(--primary);
+}
+
+
+.btn{
+    margin-top:10px;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:var(--primary);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:var(--secondary);
+    transform:scale(1.05);
+}
+
+
+p a{
+    display:inline-block;
+    margin-top:10px;
+    padding:10px 20px;
+    background:var(--primary);
+    color:white !important;
+    border-radius:10px;
+    text-decoration:none;
+    transition:.3s;
+}
+
+p a:hover{
+    background:var(--secondary);
+}
+
+
+.regresar{
+    text-align:center;
+    margin-top:20px;
+}
+
+.regresar a{
+    text-decoration:none;
+    color:white;
+    background:#388e3c;
+    padding:12px 25px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.regresar a:hover{
+    transform:scale(1.1);
+}
+
+footer{
+    height:40px;
+}
+		 .background-audio {
+            display: none;
+        }
+	
+</style>
+</head>
+
+<body> 
+<section class="hero">
+  <div>
+    <h1>La Terraza</h1>
+      <p>"Mariscos con sazón que alegran el corazón"</p>
+    </div>
+</section>
+
+<div class="contenedor">
+
+
+<div class="tarjeta">
+    <h2 class="titulo">Sobre nosotros</h2>
+    <p class="texto">
+        <p style="text-align: justify;">
+		<strong>La Terraza</strong> es un restaurante ubicado en Tres Valles, Veracruz,
+        especializado en la preparación de <strong>pescados y mariscos frescos</strong>.
+        Su propósito es ofrecer alimentos de calidad, preparados al momento,
+        garantizando siempre la higiene, frescura y el mejor sabor.
+        <br><br>
+        Más que un restaurante, es un espacio donde se busca brindar una experiencia completa,
+        combinando <em>tradición, sabor y un ambiente familiar</em> que invita a disfrutar cada momento.
+    </p>
+	</p>
+</div>
+
+
+<div class="tarjeta">
+    <h2 class="titulo">Nuestra esencia</h2>
+
+    <div class="galeria">
+
+        <div>
+            <img src="evento.jpg" alt="Fachada del restaurante">
+            <p style="font-style:italic; margin-top:5px;">
+                Donde cada visita, te deja un sabor de boca inigualable.
+            </p>
+        </div>
+
+        <div>
+            <img src="clientees.jpg" alt="Clientes disfrutando">
+            <p style="font-style:italic; margin-top:5px;">
+                Momentos llenos de sabor, alegría y buena compañía
+            </p>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="tarjeta">
+    <h2 class="titulo">Nuestros valores</h2>
+    <div class="valores">
+        <div class="valor">Responsabilidad</div>
+        <div class="valor">Calidad</div>
+        <div class="valor">Higiene</div>
+        <div class="valor">Atención al cliente</div>
+        <div class="valor">Honestidad</div>
+        <div class="valor">Compromiso</div>
+    </div>
+</div>
+
+
+<div class="tarjeta">
+    <h2 class="titulo">Nuestra experiencia</h2>
+    <p class="texto">
+		<p style="text-align: justify;"> 
+        En La Terraza buscamos que cada cliente se sienta como en casa,
+        disfrutando de un ambiente cómodo, agradable y lleno de sabor.
+        Nuestro objetivo es crear momentos únicos a través de nuestros platillos,
+        destacando siempre la frescura de los ingredientes y la atención amable.
+    </p>
+	</p>
+</div>
+
+<div class="tarjeta">
+    <h2 class="titulo">Horarios de Servicio</h2>
+
+    <table class="tabla-horarios">
+        <tr>
+            <th>Servicio</th>
+            <th>Horario</th>
+        </tr>
+
+        <tr>
+            <td>Desayunos</td>
+            <td>8:30 a.m. – 12:00 p.m.</td>
+        </tr>
+
+        <tr>
+            <td>Comida corrida</td>
+            <td>1:00 p.m. – 4:00 p.m.</td>
+        </tr>
+
+        <tr>
+            <td>Platillos de la carta</td>
+            <td>Todo el día</td>
+        </tr>
+
+        <tr>
+            <td colspan="2" class="nota">
+                <strong>Nota:</strong> Los platillos se preparan únicamente en su horario correspondiente. Gracias por su comprención.
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="tarjeta menu-digital">
+    <h2>Explora nuestro menú digital</h2>
+    <p>Ordena lo que desees y descubre nuestros deliciosos platillos</p>
+    <a href="menu-comercio.html" class="menu-digital"><strong>Ver menú</strong></a>
+</div>
+
+  <section class="section section-alt" id="contacto">
+    <div class="container">
+      <h2 class="section-title">Contáctanos</h2>
+      <div class="section-line"></div>
+      <div class="contact-grid">
+       
+        <div class="contact-info">
+          <div>
+            <h3>Encuéntranos</h3>
+            <div class="contact-row">
+              <span class="ci"></span>
+              <p>Tres Valles, Veracruz, México</p>
+            </div>
+          </div>
+          <div class="contact-row">
+            <span class="ci"></span>
+            <p>Llámanos para reservaciones al 287-152-63-51</p>
+          </div>
+          <div class="contact-row">
+            <span class="ci"></span>
+            <p><a href="mailto:laterrazat56@gmail.com">laterrazat56@gmail.com</a></p>
+			  <p>&nbsp;
+		       </p>
+          </div>
+          <div class="contact-note">
+           ¿Tienes alguna duda, comentario o quieres hacer un pedido especial? 
+            Escríbenos y te responderemos a la brevedad. 
+          </div>
+        </div>
+
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+         
+          
+          <div class="form-group">
+            <label for="name">Nombre *</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Tu nombre completo" maxlength="100" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Correo electrónico *</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="tu@correo.com" maxlength="255" required>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Asunto *</label>
+            <select id="subject" name="subject" class="form-control" required>
+              <option value="" disabled selected>Selecciona un asunto</option>
+              <option value="Duda">Duda</option>
+              <option value="Comentario">Comentario</option>
+              <option value="Pedido">Pedido</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Mensaje *</label>
+            <textarea id="message" name="message" class="form-control" placeholder="Escribe tu mensaje aquí..." rows="5" maxlength="1000" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+            Enviar Mensaje
+          </button>
+
+          <div class="form-status" id="formStatus"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</div>
+ <audio class="background-audio" autoplay loop preload="auto" playsinline>
+        <source src="rediskasound-cafe-de-la-nuit-458516.mp3" type="audio/mpeg">
+    </audio>
+	
+  <script>
+  
+    function toggleMenu() {
+      var menu = document.getElementById('mobileMenu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+    function closeMenu() {
+      document.getElementById('mobileMenu').style.display = 'none';
+    }
+
+   
+    var lastSent = 0;
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      var form = e.target;
+      var status = document.getElementById('formStatus');
+      var btn = document.getElementById('submitBtn');
+
+      
+      if (form.website.value) return;
+
+     
+      if (Date.now() - lastSent < 30000) {
+        showStatus('Por favor espera antes de enviar otro mensaje.', 'error');
+        return;
+      }
+
+      var name = form.name.value.trim();
+      var email = form.email.value.trim();
+      var subject = form.subject.value;
+      var message = form.message.value.trim();
+
+      
+      if (!name || !email || !subject || !message) {
+        showStatus('Por favor completa todos los campos.', 'error');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showStatus('Por favor ingresa un correo electrónico válido.', 'error');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+
+
+      var EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+      var EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+      var EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+		
+      fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          service_id: EMAILJS_SERVICE_ID,
+          template_id: EMAILJS_TEMPLATE_ID,
+          user_id: EMAILJS_PUBLIC_KEY,
+          template_params: {
+            from_name: name,
+            from_email: email,
+            subject: subject,
+            message: message,
+            to_email: 'laterrazat56@gmail.com'
+          }
+        })
+      })
+      .then(function(response) {
+        if (response.ok) {
+          showStatus('¡Tu mensaje ha sido enviado correctamente! Te responderemos pronto.', 'success');
+          form.reset();
+          lastSent = Date.now();
+        } else {
+          throw new Error('Error');
+        }
+      })
+      .catch(function() {
+        showStatus('Hubo un error al enviar tu mensaje. Inténtalo de nuevo más tarde.', 'error');
+      })
+      .finally(function() {
+        btn.disabled = false;
+        btn.textContent = ' Enviar Mensaje';
+      });
+    }
+
+    function showStatus(msg, type) {
+      var el = document.getElementById('formStatus');
+      el.textContent = msg;
+      el.className = 'form-status ' + type;
+      setTimeout(function() { el.style.display = 'none'; el.className = 'form-status'; }, 6000);
+    }
+
+   
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+<div class="regresar">
+    <a href="../index.html">← Volver a inicio</a>
+</div>
+<footer></footer>
+
+</body>
+</html>

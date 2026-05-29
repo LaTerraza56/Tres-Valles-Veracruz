@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menú Digital La Terraza</title>
+
+<style>
+
+:root{
+--primary:#ff6b00;
+--bg:#f4f6f8;
+--card:#ffffff;
+}
+
+body{
+margin:0;
+font-family:Arial;
+background:var(--bg);
+}
+
+header{
+background:white;
+display:flex;
+align-items:center;
+padding:15px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.terraza.png{
+width:70px;
+margin-right:15px;
+}
+
+.title{
+font-size:22px;
+font-weight:bold;
+}
+
+.subtitle{
+color:gray;
+}
+
+.categories{
+display:flex;
+overflow:auto;
+background:white;
+padding:10px;
+}
+
+.categories button{
+border:none;
+padding:10px 20px;
+margin-right:5px;
+background:#eee;
+cursor:pointer;
+border-radius:20px;
+}
+
+.categories button.active{
+background:var(--primary);
+color:white;
+}
+
+.container{
+padding:15px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 0 5px rgba(0,0,0,0.2);
+}
+
+.card button{
+background:var(--primary);
+color:white;
+border:none;
+padding:10px;
+width:100%;
+margin-top:10px;
+cursor:pointer;
+}
+
+.cart{
+position:fixed;
+bottom:0;
+width:100%;
+background:var(--primary);
+color:white;
+padding:15px;
+display:flex;
+justify-content:space-between;
+cursor:pointer;
+}
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+justify-content:center;
+align-items:center;
+}
+
+.modal-content{
+background:white;
+padding:20px;
+width:90%;
+max-width:400px;
+border-radius:10px;
+}
+
+.modal button{
+width:100%;
+padding:10px;
+margin-top:5px;
+border:none;
+background:var(--primary);
+color:white;
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjRhmjEGUxH0yO3QWFh9-ye-BD7bALaQLt5A&s">
+
+<div>
+<div class="title">La Terraza</div>
+<div class="subtitle">Desayunos y Mariscos</div>
+</div>
+
+</header>
+
+<div class="categories">
+<button onclick="categoria('desayuno',this)" class="active">Desayunos</button>
+<button onclick="categoria('mariscos',this)">Mariscos</button>
+<button onclick="categoria('pulpo',this)">Pulpo</button>
+<button onclick="categoria('coctel',this)">Cóctel</button>
+<button onclick="categoria('pescados',this)">Pescados</button>
+<button onclick="categoria('filete',this)">Filete</button>
+<button onclick="categoria('especialidades',this)">Especialidades</button>
+<button onclick="categoria('tostadas',this)">Tostadas</button>
+<button onclick="categoria('carne',this)">Carne</button>
+<button onclick="categoria('cortes',this)">Cortes</button>
+<button onclick="categoria('pollo',this)">Pollo</button>
+<button onclick="categoria('parrilladas',this)">Parrilladas</button>
+<button onclick="categoria('bebidas',this)">Bebidas</button>
+
+</div>
+
+<div class="container" id="productos"></div>
+
+<div class="cart" onclick="abrirCarrito()">
+<div id="cantidad">0 productos</div>
+<div>$<span id="total">0</span></div>
+</div>
+
+<div class="modal" id="modal">
+<div class="modal-content">
+
+<h3>Tu pedido</h3>
+
+<div id="lista"></div>
+
+<h4>Total: $<span id="totalModal">0</span></h4>
+
+<input id="nombre" placeholder="Nombre">
+<input id="mesa" placeholder="Mesa">
+
+<button onclick="enviar()">Enviar WhatsApp</button>
+<button onclick="vaciar()">Vaciar</button>
+<button onclick="cerrar()">Cerrar</button>
+
+</div>
+</div>
+
+<script>
+
+let telefono="522882103610";
+
+let carrito=[];
+
+let menu={
+	
+desayunos:[
+["Huevos al gusto",80],
+["Chilaquiles sencillos",70],
+["Chilaquiles con huevos estrellados",90],
+["Chilaquiles con carne asada",130],
+["Sandwich jamon de pierna o pollo",50],
+["Club sandwich",100],
+["Camarones para compartir",320],
+["Hot cakes",70],
+["Empanadas de queso",20],
+["Empanadas de carne",20],
+["Empanadas de pollo",20],
+["Enchiladas 3 pzas",80],
+["Enchiladas suizas 3 pzas",100],
+["Enfrijoladas",80],
+["Picadas sencillas",20],
+["Picadas con carne",50],	
+["Picada grande con carne",80],
+["Quesadilla sencilla",40],
+["Quesadilla con carne",60],
+["Tacos dorados 4 pzas",60]	
+],
+	
+
+mariscos:[
+["Arroz a la tumbada",180],
+["Caldo de camarón",180],
+["Camarones aguachile",180],
+["Cazuela de mariscos",180],
+["Camarones al mojo",180],
+["Camarones empanizados",180],
+["Camarones para compartir",320],
+["Ensalada de camarón",180],
+["Ensalada de mariscos",200],
+["Salmón al gusto",200]
+],
+
+pulpo:[
+["Pulpo al ajillo",190],
+["Pulpo a la diabla",190],
+["Pulpo a la veracruzana",190],
+["Pulpo encebollado",190],
+["Pulpo enchipotlado",190]
+],
+
+coctel:[
+["Cóctel chico",80],
+["Cóctel mediano",120],
+["Cóctel con jaiba",140],
+["Vuelve a la vida",160],
+["Vuelve a la vida con jaiba",180],
+["Ceviche de pescado",150]
+],
+
+pescados:[
+["Mojarra según peso",200],
+["Mojarra al mojo de ajo",200],
+["Mojarra frita",200],
+["Mojarra a la diabla",250],
+["Mojarra enchipotlada",250],
+["Posta de robalo",250],
+["Caldo de cabeza de robalo",200],
+["Robalito a la veracruzana",250],
+["Robalito al mojo de ajo",200],
+["Robalito frito",200]
+],
+
+filete:[
+["Filete empapelado",150],
+["Filete empanizado",150],
+["Filete relleno de mariscos",180]
+],
+
+especialidades:[
+["Camarones al coco",200],
+["Tacos gobernador",180]
+],
+
+tostadas:[
+["Tostadas de camarón",180],
+["Tostadas de jaiba",190],
+["Tostadas de pulpo",180],
+["Tostadas de ceviche",150]
+],
+
+carne:[
+["A la mexicana",130],
+["Asada",140],
+["Bistec encebollado",130],
+["Milanesa empanizada",150],
+["Tampiqueña",160]
+],
+
+cortes:[
+["Arrachera",240],
+["Sirloin",250],
+["Rib eye",250],
+["T-Bone",250],
+["Chistorra",120],
+["Salchicha para asar",50]
+],
+
+pollo:[
+["Pechuga asada",130],
+["Milanesa empanizada",130]
+],
+
+parrilladas:[
+["Parrilla 1 (3-5 personas)",650],
+["Parrilla 2 (6-8 personas)",1300],
+["Parrilla 3 (3-5 personas)",850],
+["Parrilla 4 (6-8 personas)",1600],
+["Discada norteña (3-5 personas)",450],
+["Discada norteña (6-8 personas)",980]
+],
+
+bebidas:[
+["Café americano",30],
+["Agua para café soluble",30],
+["Agua de sabor (600ml)",20],
+["Agua de sabor (1l)",30],
+["Jarra de agua de sabor (2l)",50],
+["Chelada (limon y sal)",50],
+["Michelada",70],
+["Refresco",30],
+["Cerveza (medio)",50],
+["Cerveza (cuartito)", 25]
+]
+
+};
+
+function categoria(cat,btn){
+
+document.querySelectorAll(".categories button")
+.forEach(b=>b.classList.remove("active"));
+
+btn.classList.add("active");
+
+let cont=document.getElementById("productos");
+
+cont.innerHTML="";
+
+menu[cat].forEach(p=>{
+
+cont.innerHTML+=`
+
+<div class="card">
+
+<h3>${p[0]}</h3>
+
+<p>$${p[1]}</p>
+
+<button onclick="agregar('${p[0]}',${p[1]})">
+
+Agregar
+
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+function agregar(nombre,precio){
+
+carrito.push([nombre,precio]);
+
+actualizar();
+
+}
+
+function actualizar(){
+
+let total=0;
+
+let lista=document.getElementById("lista");
+
+lista.innerHTML="";
+
+carrito.forEach((p,i)=>{
+
+total+=p[1];
+
+lista.innerHTML+=`
+<div>${p[0]} $${p[1]}
+<button onclick="eliminar(${i})">X</button>
+</div>
+`;
+
+});
+
+document.getElementById("cantidad").innerText=carrito.length+" productos";
+
+document.getElementById("total").innerText=total;
+
+document.getElementById("totalModal").innerText=total;
+
+}
+
+function eliminar(i){
+
+carrito.splice(i,1);
+
+actualizar();
+
+}
+
+function vaciar(){
+
+carrito=[];
+
+actualizar();
+
+}
+
+function abrirCarrito(){
+
+modal.style.display="flex";
+
+}
+
+function cerrar(){
+
+modal.style.display="none";
+
+}
+
+function enviar(){
+
+let nombre=document.getElementById("nombre").value;
+
+let mesa=document.getElementById("mesa").value;
+
+let msg="Pedido La Terraza%0A";
+
+carrito.forEach(p=>{
+msg+=p[0]+" $"+p[1]+"%0A";
+});
+
+msg+="Total $"+document.getElementById("total").innerText;
+
+msg+="%0ANombre "+nombre;
+
+msg+="%0AMesa "+mesa;
+
+window.open("https://wa.me/"+telefono+"?text="+msg);
+
+}
+
+categoria("desayunos",document.querySelector(".categories button"));
+
+</script>
+	
+</body>
+</html>

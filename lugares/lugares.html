@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tres Valles - Lugares de Interés</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #f3efe8, #e4dcd2);
+    color:#333;
+}
+
+
+.hero{
+    height:100vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("plazaa.png");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+}
+
+.hero h1{
+    font-family:'Playfair Display', serif;
+    font-size:60px;
+    font-style:italic;
+}
+
+.hero p{
+    font-size:20px;
+    margin-top:10px;
+}
+
+.header{
+    text-align:center;
+    padding:60px 20px 20px;
+}
+
+.header h2{
+    font-family:'Playfair Display', serif;
+    font-size:45px;
+    font-style:italic;
+    color:#6b3e2e;
+}
+
+.intro{
+    max-width:800px;
+    margin:auto;
+    margin-top:20px;
+    background:#A9806A;
+    color:#fff;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    line-height:1.6;
+    font-size:17px;
+}
+
+
+.section-title{
+    text-align:center;
+    font-size:40px;
+    margin-top:40px;
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    color:#6b3e2e;
+}
+
+
+.contenedor{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+    padding:40px;
+}
+
+
+.card{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.card h3{
+    margin:15px;
+    color:#6b3e2e;
+}
+
+.card p{
+    margin:15px;
+    font-size:14px;
+    line-height:1.5;
+}
+
+
+.video{
+    text-align:center;
+    padding:40px;
+}
+
+.video h2{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:35px;
+    color:#6b3e2e;
+}
+
+.video video{
+    width:80%;
+    border-radius:15px;
+    margin-top:20px;
+}
+
+.boton{
+    text-align:center;
+    margin:40px;
+}
+
+.boton a{
+    text-decoration:none;
+    background:#6b3e2e;
+    color:white;
+    padding:12px 25px;
+    border-radius:25px;
+    transition:0.3s;
+}
+
+.boton a:hover{
+    background:#8a5a44;
+}
+	.sources {
+    background: linear-gradient(135deg, #F0FDF4, #FFFFFF);
+    padding: 6rem 2rem;
+}
+
+.sources-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.sources-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.source-item {
+    background: #f3f4f6;
+    border-left: 6px solid #6b3e2e;
+    padding: 1.2rem 1.5rem;
+    border-radius: 12px;
+    color: #374151;
+    line-height: 1.6;
+    
+    
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+
+.source-item:hover {
+    transform: translateX(10px) scale(1.02);
+    background: #ffffff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+
+
+.source-item a {
+    color:#6b3e2e;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.source-item a:hover {
+    text-decoration: underline;
+}
+		
+        .sources-note {
+            margin-top: 2rem;
+            background:#F5F5DC;
+            color: black;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 20px 25px -5px rgba;
+        }
+
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="hero">
+    <div>
+		<h1><b>LUGARES DE INTERÉS&nbsp;&nbsp;</b></h1>
+		<p><b>Descubre los lugares más emblemáticos y visitados de nuestro municipio</b></p>
+    </div>
+</div>
+
+
+<div class="header">
+    <h2>Sobre Tres Valles&nbsp;</h2>
+    <p class="intro">
+    Tres Valles, Veracruz, es un municipio lleno de vida, cultura y espacios que forman parte 
+    de la identidad de sus habitantes. A lo largo del tiempo, se han desarrollado distintos 
+    puntos de encuentro donde las personas conviven, practican deporte, disfrutan de eventos 
+    y fortalecen sus tradiciones. Desde parques y espacios deportivos hasta edificios 
+    representativos, cada lugar cuenta con su propia historia y relevancia dentro de la comunidad. 
+    A continuación, se presentan algunos de los sitios más visitados e importantes de Tres Valles.
+    </p>
+</div>
+
+<h2 class="section-title">Lugares más visitados</h2>
+
+<div class="contenedor">
+
+    <div class="card">
+        <img src="igle.jpg">
+        <h3>Iglesia Principal</h3>
+        <p style="text-align: justify;">Se consolidó durante el crecimiento urbano del municipio a mediados del siglo XX. Más que un templo, es un símbolo de identidad comunitaria, ya que en ella se celebran festividades importantes como patronales, bodas y eventos religiosos que reúnen a gran parte de la población. Su arquitectura sencilla pero imponente refleja la tradición de las iglesias veracruzanas.</p>
+    </div>
+
+    <div class="card">
+        <img src="images.jpg">
+        <h3>Parque Central</h3>
+        <p style="text-align: justify;">El parque central surgió como parte del diseño urbano del municipio, funcionando desde sus primeras etapas como punto de reunión social. Con el paso del tiempo, se ha modernizado con áreas verdes, iluminación y espacios recreativos. Es el lugar donde se realizan eventos cívicos, ferias y celebraciones, convirtiéndose en el corazón social de Tres Valles.</p>
+    </div>
+
+    <div class="card">
+        <img src="plazaa.png">
+        <h3>Plaza Municipal</h3>
+        <p style="text-align: justify;">La plaza municipal está directamente ligada al desarrollo administrativo y social del municipio. Es un espacio donde convergen actividades culturales, políticas y recreativas. Durante fechas importantes, como fiestas patrias o eventos locales, se transforma en el escenario principal del municipio, reforzando el sentido de identidad y pertenencia.</p>
+    </div>
+
+    <div class="card">
+        <img src="chavito neme.jpg">
+        <h3>Unidad Deportiva "Chavo Neme"</h3>
+        <p style="text-align: justify;">Fue creada como parte de iniciativas municipales para fomentar el deporte y la convivencia social entre jóvenes. Con el tiempo se ha convertido en uno de los espacios más utilizados, albergando torneos locales de fútbol, básquetbol y actividades físicas. Su importancia radica en que impulsa estilos de vida saludables y fortalece la comunidad</p>
+    </div>
+
+    <div class="card">
+        <img src="complejo  dep.png"> 
+        <h3>Complejo Deportivo</h3>
+        <p style="text-align: justify;">Representa una etapa más moderna en la infraestructura de Tres Valles. Fue desarrollado para ampliar las opciones deportivas del municipio, incorporando instalaciones más completas y funcionales. Aquí se realizan eventos, competencias y entrenamientos, consolidándose como un espacio clave para el desarrollo deportivo regional.</p>
+    </div>
+
+    <div class="card">
+        <img src="tanque a.jpg">
+        <h3>Tanque de Agua</h3>
+        <p style="text-align: justify;">El tanque elevado es una infraestructura fundamental que surgió con el crecimiento urbano del municipio para garantizar el suministro de agua potable. Con el tiempo, se convirtió en un ícono visual de Tres Valles, ya que es visible desde distintos puntos y funciona como referencia geográfica para los habitantes.</p>
+    </div>
+
+    <div class="card">
+        <img src="casacultura.jpg">
+        <h3>Casa de la Cultura</h3>
+        <p style="text-align: justify;">Fue creada con el objetivo de preservar y promover las expresiones artísticas y culturales del municipio. En este espacio se imparten talleres de danza, música, pintura y otras disciplinas. Además, sirve como sede de exposiciones y eventos culturales, fortaleciendo la identidad cultural de Tres Valles.</p>
+    </div>
+
+    <div class="card">
+        <img src="palacioo.jpg">
+        <h3>Palacio Municipal</h3>
+        <p style="text-align: justify;">Es el centro administrativo del municipio y uno de los edificios más importantes. Desde su construcción, ha sido el lugar donde se toman decisiones políticas y se gestionan servicios para la población. Su arquitectura refleja el estilo institucional típico de los municipios veracruzanos y representa el orden y la organización local.</p>
+    </div>
+
+</div>
+
+
+<div class="video">
+    <h2>Conoce más de Tres Valles</h2>
+
+    <video controls>
+        <source src="tres valles.mp4" type="video/mp4">
+    </video>
+</div>
+<section id="fuentes" class="sources">
+        <div class="sources-container">
+            <div class="section-header">
+              <h2 class="section-title">Fuentes de consulta</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="sources-list">
+                <div class="source-item">
+                    Información general sobre agricultura, economía local y contexto regional de Tres Valles, Veracruz, obtenida de conocimientos educativos y fuentes de consulta pública. Algunas imágenes y videos son de autoría propia.
+                </div>
+                <div class="source-item">
+                    Información sobre el municipio de Tres Valles: <a href="https://es.wikipedia.org/wiki/Municipio_de_Tres_Valles " target="_blank" rel="noopener noreferrer">https://es.wikipedia.org/wiki/Tres_Valles</a>
+                </div>
+                <div class="source-item">
+                    Obtención de imagenes de escudo e iglesia <a href="https://es.wikipedia.org/wiki/Municipio_de_Tres_Valles" target="_blank" rel="noopener noreferrer">https://es.wikipedia.org</a>
+                </div>
+                <div class="source-item">
+                    Fotografia aérea: <a href="https://www.veracruz.gob.mx/2023/03/29/como-en-todo-veracruz-la-imagen-de-transformacion-ya-es-un-hecho-en-tres-valles/" target="_blank" rel="noopener noreferrer">https://www.veracruz.gob.mx</a>
+                </div>
+                 <div class="source-item">
+                    Fotografia de la plaza: <a href="https://elregionalcoatepec.com/la-imagen-de-transformacion-ya-es-un-hecho-en-tres-valles-cgj/" target="_blank" rel="noopener noreferrer">https://elregionalcoatepec.com</a>
+                </div>
+                 <div class="source-item">
+                    Tanque de agua Tres Valles: <a href="https://www.facebook.com/photo.php?fbid=1686325428677480&set=a.978672116109485&type=3" target="_blank" rel="noopener noreferrer">https://www.facebook.com</a>
+                </div>
+            </div>
+				<div class="source-item">
+                    Palacio Municipal: <a href="https://www.facebook.com/photo.php?fbid=685832488626749&set=a.644033124401006&id=100063829724732" target="_blank" rel="noopener noreferrer">https://www.facebook.com</a>
+                </div>
+			<div class="source-item">
+                    Complejo deportivo: <a href="https://www.facebook.com/eltiburonerodelacuenca/posts/as%C3%AD-luce-el-complejo-deportivo-en-tres-valles-sin-duda-alguna-una-gran-obra-de-l/1265877035559516/" target="_blank" rel="noopener noreferrer">https://www.facebook.com</a>
+                </div>
+			<div class="source-item">
+                    Parque Miguel Hidalgo: <a href="https://www.masnoticias.mx/inauguran-rehabilitacion-del-parque-miguel-hidalgo-en-tres-valles/" target="_blank" rel="noopener noreferrer">https://www.masnoticias.mx</a>
+                </div>
+            <div class="sources-note">
+            *Este proyecto es de carácter educativo y sin fines de lucro. Las imágenes y videos utilizados son de referencia. En caso de requerir la eliminación de algún contenido, se atenderá la solicitud para su pronta corrección. </div>
+        </div>
+    </section>
+
+<div class="boton">
+    <a href="../index.html">←Volver al inicio</a>
+</div>
+
+</body>
+</html>
